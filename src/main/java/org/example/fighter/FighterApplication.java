@@ -1,13 +1,14 @@
-package org.example.fightersdb;
+package org.example.fighter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FightersDbApplication {
+public class FighterApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FightersDbApplication.class, args);
+
+        SpringApplication.run(FighterApplication.class, args);
     }
 
 }
