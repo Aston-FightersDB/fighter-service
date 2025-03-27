@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -34,7 +35,7 @@ public class FighterServiceImpl implements FighterService {
     }
 
     @Override
-    public FighterDto getFighter(Long id) {
+    public FighterDto getFighter(UUID id) {
         Fighter fighter = fighterRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Боец не найден с id: " + id));
         return FighterMapper.toDto(fighter);
@@ -48,7 +49,7 @@ public class FighterServiceImpl implements FighterService {
     }
 
     @Override
-    public FighterDto updateFighter(Long id, FighterDto fighterDto) {
+    public FighterDto updateFighter(UUID id, FighterDto fighterDto) {
         Fighter existingFighter = fighterRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Боец не найден с id: " + id));
         existingFighter.setName(fighterDto.getName());
@@ -59,12 +60,12 @@ public class FighterServiceImpl implements FighterService {
     }
 
     @Override
-    public void deleteFighter(Long id) {
+    public void deleteFighter(UUID id) {
         fighterRepository.deleteById(id);
     }
 
     @Override
-    public RecordDto getFighterRecord(Long fighterId) {
+    public RecordDto getFighterRecord(UUID fighterId) {
         Fighter fighter = fighterRepository.findById(fighterId)
                 .orElseThrow(() -> new RuntimeException("Боец не найден с id: " + fighterId));
         if (fighter.getRecord() == null) {
@@ -74,7 +75,7 @@ public class FighterServiceImpl implements FighterService {
     }
 
     @Override
-    public RecordDto createOrUpdateFighterRecord(Long fighterId, RecordDto recordDto) {
+    public RecordDto createOrUpdateFighterRecord(UUID fighterId, RecordDto recordDto) {
         Fighter fighter = fighterRepository.findById(fighterId)
                 .orElseThrow(() -> new RuntimeException("Боец не найден с id: " + fighterId));
         Record record = fighter.getRecord();
@@ -91,7 +92,7 @@ public class FighterServiceImpl implements FighterService {
     }
 
     @Override
-    public FighterDto partialUpdateFighter(Long fighterId, FighterDto fighterDto) {
+    public FighterDto partialUpdateFighter(UUID fighterId, FighterDto fighterDto) {
         Fighter fighter = fighterRepository.findById(fighterId)
                 .orElseThrow(() -> new RuntimeException("Боец не найден с id: " + fighterId));
         if (fighterDto.getName() != null) {
@@ -102,7 +103,7 @@ public class FighterServiceImpl implements FighterService {
     }
 
     @Override
-    public RecordDto partialUpdateFighterRecord(Long fighterId, RecordDto recordDto) {
+    public RecordDto partialUpdateFighterRecord(UUID fighterId, RecordDto recordDto) {
         Fighter fighter = fighterRepository.findById(fighterId)
                 .orElseThrow(() -> new RuntimeException("Боец не найден с id: " + fighterId));
         Record record = fighter.getRecord();

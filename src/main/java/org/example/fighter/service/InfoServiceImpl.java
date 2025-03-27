@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -31,7 +32,7 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
-    public InfoDto getInfo(Long id) {
+    public InfoDto getInfo(UUID id) {
         Info info = infoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Информация не найдена с id: " + id));
         return InfoMapper.toDto(info);
@@ -45,7 +46,7 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
-    public InfoDto updateInfo(Long id, InfoDto infoDto) {
+    public InfoDto updateInfo(UUID id, InfoDto infoDto) {
         Info existingInfo = infoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Информация не найдена с id: " + id));
         existingInfo.setClub(infoDto.getClub());
@@ -55,7 +56,7 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
-    public void deleteInfo(Long id) {
+    public void deleteInfo(UUID id) {
         infoRepository.deleteById(id);
     }
 }

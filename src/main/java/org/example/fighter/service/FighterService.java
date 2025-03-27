@@ -4,6 +4,7 @@ import org.example.fighter.dto.FighterDto;
 import org.example.fighter.dto.RecordDto;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Интерфейс сервиса для операций с Fighter.
@@ -24,7 +25,7 @@ public interface FighterService {
      * @param id идентификатор бойца
      * @return FighterDto
      */
-    FighterDto getFighter(Long id);
+    FighterDto getFighter(UUID id);
 
     /**
      * Получает список всех бойцов.
@@ -40,14 +41,14 @@ public interface FighterService {
      * @param fighterDto обновлённые данные
      * @return обновлённый FighterDto
      */
-    FighterDto updateFighter(Long id, FighterDto fighterDto);
+    FighterDto updateFighter(UUID id, FighterDto fighterDto);
 
     /**
      * Удаляет бойца.
      *
      * @param id идентификатор бойца
      */
-    void deleteFighter(Long id);
+    void deleteFighter(UUID id);
 
     /**
      * Получить статистику бойца по идентификатору бойца.
@@ -55,7 +56,7 @@ public interface FighterService {
      * @param fighterId
      * @return RecordDto бойца
      */
-    RecordDto getFighterRecord(Long fighterId);
+    RecordDto getFighterRecord(UUID fighterId);
 
     /**
      * Создать или обновить статистику бойца.
@@ -64,7 +65,7 @@ public interface FighterService {
      * @param recordDto
      * @return обновленная статистика бойца RecordDto
      */
-    RecordDto createOrUpdateFighterRecord(Long fighterId, RecordDto recordDto);
+    RecordDto createOrUpdateFighterRecord(UUID fighterId, RecordDto recordDto);
 
     /**
      * Частично обновить данные бойца.
@@ -73,7 +74,7 @@ public interface FighterService {
      * @param fighterDto
      * @return обновленная информация бойца
      */
-    FighterDto partialUpdateFighter(Long fighterId, FighterDto fighterDto);
+    FighterDto partialUpdateFighter(UUID fighterId, FighterDto fighterDto);
 
     /**
      * Частично обновить статистику бойца.
@@ -82,5 +83,5 @@ public interface FighterService {
      * @param recordDto
      * @return обновленная статистика бойца
      */
-    RecordDto partialUpdateFighterRecord(Long fighterId, RecordDto recordDto);
+    RecordDto partialUpdateFighterRecord(UUID fighterId, RecordDto recordDto);
 }

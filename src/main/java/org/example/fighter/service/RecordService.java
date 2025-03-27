@@ -3,6 +3,7 @@ package org.example.fighter.service;
 import org.example.fighter.dto.RecordDto;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Интерфейс сервиса для операций с Record.
@@ -23,7 +24,7 @@ public interface RecordService {
      * @param id идентификатор записи
      * @return RecordDto
      */
-    RecordDto getRecord(Long id);
+    RecordDto getRecord(UUID id);
 
     /**
      * Получает список всех записей
@@ -39,12 +40,12 @@ public interface RecordService {
      * @param recordDto обновлённые данные
      * @return обновлённый RecordDto
      */
-    RecordDto updateRecord(Long id, RecordDto recordDto);
+    RecordDto updateRecord(UUID id, RecordDto recordDto);
 
     /**
      * Удаляет запись
      *
      * @param id идентификатор записи
      */
-    void deleteRecord(Long id);
+    void deleteRecord(UUID id);
 }

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 /**
  * DTO для Record.
  */
@@ -11,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RecordDto {
-    private Long id;
+    private UUID id;
     private Integer wins;
     private Integer loses;
     private Integer ties;

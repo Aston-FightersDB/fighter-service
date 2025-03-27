@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -31,7 +32,7 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public RecordDto getRecord(Long id) {
+    public RecordDto getRecord(UUID id) {
         Record record = recordRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Запись не найдена с id: " + id));
         return RecordMapper.toDto(record);
@@ -45,7 +46,7 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public RecordDto updateRecord(Long id, RecordDto recordDto) {
+    public RecordDto updateRecord(UUID id, RecordDto recordDto) {
         Record existingRecord = recordRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Запись не найдена с id: " + id));
         existingRecord.setWins(recordDto.getWins());
@@ -56,7 +57,7 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public void deleteRecord(Long id) {
+    public void deleteRecord(UUID id) {
         recordRepository.deleteById(id);
     }
 }

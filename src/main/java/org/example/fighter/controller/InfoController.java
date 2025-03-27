@@ -6,12 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * REST-контроллер для операций с Info.
  */
 @RestController
-@RequestMapping("/api/infos")
+@RequestMapping("/api/v1/infos")
 public class InfoController {
 
     private final InfoService infoService;
@@ -39,7 +40,7 @@ public class InfoController {
      * @return InfoDto
      */
     @GetMapping("/{id}")
-    public ResponseEntity<InfoDto> getInfo(@PathVariable Long id) {
+    public ResponseEntity<InfoDto> getInfo(@PathVariable UUID id) {
         InfoDto infoDto = infoService.getInfo(id);
         return ResponseEntity.ok(infoDto);
     }
@@ -63,7 +64,7 @@ public class InfoController {
      * @return обновлённый InfoDto
      */
     @PutMapping("/{id}")
-    public ResponseEntity<InfoDto> updateInfo(@PathVariable Long id, @RequestBody InfoDto infoDto) {
+    public ResponseEntity<InfoDto> updateInfo(@PathVariable UUID id, @RequestBody InfoDto infoDto) {
         InfoDto updatedInfo = infoService.updateInfo(id, infoDto);
         return ResponseEntity.ok(updatedInfo);
     }
@@ -75,7 +76,7 @@ public class InfoController {
      * @return ответ без контента
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteInfo(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteInfo(@PathVariable UUID id) {
         infoService.deleteInfo(id);
         return ResponseEntity.noContent().build();
     }

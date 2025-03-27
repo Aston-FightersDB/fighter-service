@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+
+  database:
+    image: postgres:14.7
+    container_name: fighters_service_db
+    ports:
+      - "5433:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    volumes:
+      - postgres-fighters-user-service:/var/lib/postgresql/data
+    networks:
+      - fighters-network
+
+volumes:
+  postgres-fighters-user-service:
+    name: postgres-fighters-user-service
+
+networks:
+  fighters-network:
+    name: fighters-network

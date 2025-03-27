@@ -3,6 +3,7 @@ package org.example.fighter.service;
 import org.example.fighter.dto.InfoDto;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Интерфейс сервиса для операций с Info.
@@ -23,7 +24,7 @@ public interface InfoService {
      * @param id идентификатор информации
      * @return InfoDto
      */
-    InfoDto getInfo(Long id);
+    InfoDto getInfo(UUID id);
 
     /**
      * Получает список всех записей Info.
@@ -39,12 +40,12 @@ public interface InfoService {
      * @param infoDto обновлённые данные
      * @return обновлённый InfoDto
      */
-    InfoDto updateInfo(Long id, InfoDto infoDto);
+    InfoDto updateInfo(UUID id, InfoDto infoDto);
 
     /**
      * Удаляет информацию.
      *
      * @param id идентификатор информации
      */
-    void deleteInfo(Long id);
+    void deleteInfo(UUID id);
 }

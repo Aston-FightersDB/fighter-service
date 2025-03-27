@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * REST-контроллер для операций с Fighter.
@@ -41,7 +42,7 @@ public class FighterController {
      * @return FighterDto
      */
     @GetMapping("/{id}")
-    public ResponseEntity<FighterDto> getFighter(@PathVariable Long id) {
+    public ResponseEntity<FighterDto> getFighter(@PathVariable UUID id) {
         FighterDto fighterDto = fighterService.getFighter(id);
         return ResponseEntity.ok(fighterDto);
     }
@@ -65,7 +66,7 @@ public class FighterController {
      * @return обновлённый FighterDto
      */
     @PutMapping("/{id}")
-    public ResponseEntity<FighterDto> updateFighter(@PathVariable Long id, @RequestBody FighterDto fighterDto) {
+    public ResponseEntity<FighterDto> updateFighter(@PathVariable UUID id, @RequestBody FighterDto fighterDto) {
         FighterDto updatedFighter = fighterService.updateFighter(id, fighterDto);
         return ResponseEntity.ok(updatedFighter);
     }
@@ -77,7 +78,7 @@ public class FighterController {
      * @return ответ без контента
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFighter(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteFighter(@PathVariable UUID id) {
         fighterService.deleteFighter(id);
         return ResponseEntity.noContent().build();
     }
@@ -89,7 +90,7 @@ public class FighterController {
      * @return recordDto
      */
     @GetMapping("/{id}/record")
-    public ResponseEntity<RecordDto> getFighterRecord(@PathVariable Long id) {
+    public ResponseEntity<RecordDto> getFighterRecord(@PathVariable UUID id) {
         RecordDto recordDto=fighterService.getFighterRecord(id);
         return ResponseEntity.ok(recordDto);
     }
@@ -102,7 +103,7 @@ public class FighterController {
      * @return созданный/обновленный recordDto
      */
     @PostMapping("/{id}/record")
-    public ResponseEntity<RecordDto> createOrUpdateFighterRecord(@PathVariable Long id, @Valid @RequestBody RecordDto recordDto) {
+    public ResponseEntity<RecordDto> createOrUpdateFighterRecord(@PathVariable UUID id, @Valid @RequestBody RecordDto recordDto) {
         RecordDto updateRecord = fighterService.createOrUpdateFighterRecord(id,recordDto);
         return new ResponseEntity<>(updateRecord, HttpStatus.CREATED);
     }
@@ -115,7 +116,7 @@ public class FighterController {
      * @return обновленный боец
      */
     @PatchMapping("/{id}")
-    public ResponseEntity<FighterDto> partialUpdateFighter(@PathVariable Long id, @RequestBody FighterDto fighterDto) {
+    public ResponseEntity<FighterDto> partialUpdateFighter(@PathVariable UUID id, @RequestBody FighterDto fighterDto) {
         FighterDto updatedFighter = fighterService.partialUpdateFighter(id, fighterDto);
         return ResponseEntity.ok(updatedFighter);
     }
@@ -128,7 +129,7 @@ public class FighterController {
      * @return обновленная статистика бойца
      */
     @PatchMapping("/{id}/record")
-    public ResponseEntity<RecordDto> partialUpdateFighterRecord(@PathVariable Long id, @Valid @RequestBody RecordDto recordDto) {
+    public ResponseEntity<RecordDto> partialUpdateFighterRecord(@PathVariable UUID id, @Valid @RequestBody RecordDto recordDto) {
         RecordDto updateRecord = fighterService.partialUpdateFighterRecord(id,recordDto);
         return ResponseEntity.ok(updateRecord);
     }

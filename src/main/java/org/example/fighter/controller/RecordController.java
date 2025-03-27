@@ -6,12 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * REST-контроллер для операций с Record.
  */
 @RestController
-@RequestMapping("/api/records")
+@RequestMapping("/api/v1/records")
 public class RecordController {
 
     private final RecordService recordService;
@@ -39,7 +40,7 @@ public class RecordController {
      * @return RecordDto
      */
     @GetMapping("/{id}")
-    public ResponseEntity<RecordDto> getRecord(@PathVariable Long id) {
+    public ResponseEntity<RecordDto> getRecord(@PathVariable UUID id) {
         RecordDto recordDto = recordService.getRecord(id);
         return ResponseEntity.ok(recordDto);
     }
@@ -63,7 +64,7 @@ public class RecordController {
      * @return обновлённый RecordDto
      */
     @PutMapping("/{id}")
-    public ResponseEntity<RecordDto> updateRecord(@PathVariable Long id, @RequestBody RecordDto recordDto) {
+    public ResponseEntity<RecordDto> updateRecord(@PathVariable UUID id, @RequestBody RecordDto recordDto) {
         RecordDto updatedRecord = recordService.updateRecord(id, recordDto);
         return ResponseEntity.ok(updatedRecord);
     }
@@ -75,7 +76,7 @@ public class RecordController {
      * @return ответ без контента
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRecord(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteRecord(@PathVariable UUID id) {
         recordService.deleteRecord(id);
         return ResponseEntity.noContent().build();
     }
