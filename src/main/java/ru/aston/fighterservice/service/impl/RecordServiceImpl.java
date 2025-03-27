@@ -1,4 +1,4 @@
-package ru.aston.fighterservice.service;
+package ru.aston.fighterservice.service.impl;
 
 import ru.aston.fighterservice.dto.RecordDto;
 import ru.aston.fighterservice.mapper.RecordMapper;
@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import ru.aston.fighterservice.service.RecordService;
 
 /**
  * Реализация сервиса для операций с Record.

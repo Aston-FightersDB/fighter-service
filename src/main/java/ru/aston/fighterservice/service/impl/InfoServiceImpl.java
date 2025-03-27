@@ -1,4 +1,4 @@
-package ru.aston.fighterservice.service;
+package ru.aston.fighterservice.service.impl;
 
 import ru.aston.fighterservice.dto.InfoDto;
 import ru.aston.fighterservice.entity.Info;
@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import ru.aston.fighterservice.service.InfoService;
 
 /**
  * Реализация сервиса для операций с Info.
