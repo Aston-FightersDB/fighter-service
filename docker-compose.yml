@@ -3,22 +3,22 @@ services:
 
   database:
     image: postgres:14.7
-    container_name: fighters_service_db
+    container_name: fighter_service_db
     ports:
-      - "5433:5432"
+      - "5435:5432"
     restart: always
     environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
+      POSTGRES_DB: fighter_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
-      - postgres-fighters-user-service:/var/lib/postgresql/data
+      - postgres-fighters-service:/var/lib/postgresql/data
     networks:
       - fighters-network
 
 volumes:
-  postgres-fighters-user-service:
-    name: postgres-fighters-user-service
+  postgres-fighters-service:
+    name: postgres-fighters-service
 
 networks:
   fighters-network:

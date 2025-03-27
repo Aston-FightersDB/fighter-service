@@ -1,0 +1,104 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1743081989702-1
+      author: shoichi
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_fighter
+                  name: id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: info_id
+                  type: UUID
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: record_id
+                  type: UUID
+            tableName: fighter
+  - changeSet:
+      id: 1743081989702-2
+      author: shoichi
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_info
+                  name: id
+                  type: UUID
+              - column:
+                  name: club
+                  type: VARCHAR(255)
+              - column:
+                  name: manager
+                  type: VARCHAR(255)
+            tableName: info
+  - changeSet:
+      id: 1743081989702-3
+      author: shoichi
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_record
+                  name: id
+                  type: UUID
+              - column:
+                  name: wins
+                  type: INT
+              - column:
+                  name: loses
+                  type: INT
+              - column:
+                  name: ties
+                  type: INT
+            tableName: record
+  - changeSet:
+      id: 1743081989702-4
+      author: shoichi
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: record_id
+            constraintName: uc_fighter_record
+            tableName: fighter
+  - changeSet:
+      id: 1743081989702-5
+      author: shoichi
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: info_id
+            baseTableName: fighter
+            constraintName: FK_FIGHTER_ON_INFO
+            referencedColumnNames: id
+            referencedTableName: info
+  - changeSet:
+      id: 1743081989702-6
+      author: shoichi
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: record_id
+            baseTableName: fighter
+            constraintName: FK_FIGHTER_ON_RECORD
+            referencedColumnNames: id
+            referencedTableName: record
+

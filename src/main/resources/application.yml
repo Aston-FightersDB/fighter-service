@@ -1,0 +1,29 @@
+server:
+    port: 8083
+
+spring:
+    application:
+        name: fighter-service
+    #  profiles:
+    #    active: local
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5435/fighter_service_db
+        username: postgres
+        password: postgres
+
+    liquibase:
+        change-log: db/changelog/liquibase-master.yml
+
+    kafka:
+        bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+        producer:
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        consumer:
+            group-id: user-service-group
+            auto-offset-reset: earliest
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+            properties:
+                spring.json.trusted.packages: "ru.aston.*"
